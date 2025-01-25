@@ -1,0 +1,320 @@
+\documentclass[11pt]{article}
+
+\usepackage{relsize}
+\usepackage{soul}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{mathpazo}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{mdframed}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[framed,numbered,autolinebreaks]{sty/mcode}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{bold-extra}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% DO NOT CHANGE ANYTHING HERE
+
+\allowdisplaybreaks
+
+\addtolength{\textwidth}{2.2in}
+\addtolength{\hoffset}{-1in}
+\addtolength{\textheight}{2in}
+\addtolength{\voffset}{-1in}
+
+\linespread{1.1}
+
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+   {-2ex \@plus -1ex \@minus -.2ex}%
+   {1.7ex \@plus.2ex}%
+   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+   {-3.0ex\@plus -2ex \@minus -.2ex}%
+   {0.9ex \@plus .2ex}%
+   {\normalfont\normalsize\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+   {1.1ex\@plus 1ex \@minus .2ex}%
+   {.75ex \@plus 1ex}%
+   {\normalfont\normalsize\bfseries}}
+\setcounter{secnumdepth}{3}
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}%
+  {\z@}{0.75ex \@plus 1ex \@minus .2ex}{-1em}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\mdfdefinestyle{csstyle}{%
+leftmargin=0.5cm,rightmargin=0.5cm,
+skipabove=10pt, skipbelow=10pt,
+rightline=true,innerleftmargin=10,innerrightmargin=10,
+frametitlerulecolor=black,
+frametitlebackgroundcolor=white,
+linecolor=black!60,linewidth=1pt,
+backgroundcolor=gray!2,
+frametitlebackgroundcolor=gray!8,
+frametitlerulewidth=1pt}
+
+% Define a custom tcolorbox environment
+\newtcolorbox{sectionbox}[1]{
+  sharp corners,                    % No rounded corners
+  before=\vspace{0.2em},            % Space before the box
+  colback=NavyBlue!10,              % background color for main text
+  colframe=NavyBlue!80,             % border color
+  coltitle=black,                   % title font color
+  boxrule=2pt,                      % border thickness
+  top=-3pt,                          % padding at the top of the box
+  bottom=3pt,                       % padding at the bottom of the box
+  left=6pt,                         % padding at the left of the box
+  right=6pt,                        % padding at the right of the box
+  title=#1,                         % title text
+  colbacktitle=NavyBlue!30,         % background color for title
+  fonttitle=\large\bfseries,        % title font
+  titlerule=0.1pt,                  % border thickness for title
+  toptitle=3pt,                     % padding above the title
+  bottomtitle=3pt,                  % padding below the title
+  parbox=false,                     % allow page breaks inside the box
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% YOU CAN EDIT STUFF BELOW
+
+\newcommand{\cs}[1]{\comment{cs}{#1}}
+\newcommand{\gbtext}[1]{\colorbox{gray!20}{#1}}
+\newcommand{\gbtexttt}[1]{\gbtext{\texttt{#1}}}
+\newcommand{\blank}[1]{\hspace*{#1}}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{\\[-0.85em] \hfill \smaller[2] Developed by Taras Shevchuk, MNE 25}
+\fancyhead[R]{Electronic Circuits: Official Cheat Sheet}
+\fancyhead[L]{KSE University – Engineering School}
+
+% \fancyfoot[RO, LE] {\thepage}
+\cfoot{\thepage{}}
+\rfoot{}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{macros/vmr-symbols-vecbold}
+\input{macros/standard-macros}
+\input{macros/defs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\thispagestyle{fancy}
+
+\begin{sectionbox}{PN junction}
+\begin{align*}
+& I_{tot} = A \cdot J_{tot}; \quad 
+     J_{tot} = J_{tot}^{drift} + J_{tot}^{diff}; \quad 
+     J_{tot}^{drift} = (\mu_n \cdot n + \mu_p \cdot p) \cdot q \cdot E; \quad
+     J_{tot}^{diff} = q \cdot \left( D_n \cdot \frac{d n}{d x} - D_p \cdot \frac{d p}{d x} \right); \\[0.5em]
+& I_D = I_S \cdot (e^{\frac{V_F}{V_T}} - 1); \qquad
+  r_D = \left( \frac{d I_D}{d V_F} \right)^{-1} \approx \frac{V_T}{I_D}, \;\; v_f \ll V_F; \qquad
+  n_i \approx 5.2 \cdot 10^{15} \cdot T^{\frac{3}{2}} \cdot e^{-\frac{E_g}{2 \cdot k \cdot T}}; \\[0.5em]
+& C_j = \frac{C_{j0}}{\sqrt{1 + \frac{V_R}{V_0}}}; \qquad
+  C_{j0} = A \cdot \sqrt{\frac{\epsilon \cdot q}{2} \cdot \frac{N_A \cdot N_D}{N_A + N_D} \cdot \frac{1}{V_0}}; \qquad
+  V_0 = V_T \cdot \ln \left( \frac{N_A \cdot N_D}{n_i^2} \right).
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{BJT}
+\begin{align*}
+& I_C = I_S \cdot e^{\frac{V_{BE}}{V_T}} \cdot (1 + \frac{V_{CE}}{V_A}) \approx I_S \cdot e^{\frac{V_{BE}}{V_T}}; \qquad
+  I_S = \frac{q \cdot A \cdot D_n \cdot n_i^2}{W_B \cdot N_A}; \qquad
+  V_A = \frac{I_C^{\prime}}{\frac{d I_C}{d V_{CE}}}; \\[0.5em]
+& \beta_F = \frac{I_C}{I_B} = \frac{1}{\frac{W_B^2}{2 \cdot \tau_b \cdot D_n} + \frac{D_p}{D_n} \cdot \frac{W_B}{L_p} \cdot \frac{N_A}{N_D}}; \qquad
+  g_m = \frac{d I_C}{d V_{BE}} = \frac{I_C}{V_T}; \qquad
+  r_{\pi} = \frac{d V_{BE}}{d I_B} = \frac{\beta_F}{g_m}; \qquad %CHECK Why is "pi" index, not "in" as for MOSFET?
+  r_o = \frac{d V_{CE}}{d I_C} = \frac{V_A}{I_C}. 
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{MOSFET}
+\begin{align*}
+& V_{ov} = V_{GS} - V_{th}; \qquad 
+  V_{th} = V_{th0} + \gamma \cdot \left( \sqrt{2 \cdot \phi_f + V_{Bias}} - \sqrt{2 \cdot \phi_f} \right); \qquad 
+  k^{\prime} = \mu_n \cdot C_{ox}; \qquad
+  \frac{g_m}{I_D} = \frac{2}{V_{ov}}; \\[0.5em]
+& \gamma = \frac{1}{C_{ox}} \cdot \sqrt{2 \cdot q \cdot \epsilon \cdot N_A}; \qquad
+  C_{ox} = \frac{\epsilon_{ox}}{t_{ox}}; \qquad
+  V_A = \frac{1}{\lambda} = \frac{I_D}{\frac{d I_D}{d V_{DS}}}; \qquad %CHECK for BJT we use prime index for current, since it is specific current, not the arbitrary one. Here it looks like arbitrary one, is it correct?
+  r_{in} \rightarrow \infty; \qquad
+  r_o = \frac{d V_{DS}}{d I_D} = \frac{V_A}{I_D}; \\[0.5em]
+& I_D = \begin{cases}
+  k^{\prime} \cdot \frac{W}{L} \cdot V_{ov} \cdot V_{DS} & \; V_{DS} \ll V_{ov},\\[0.5em]
+  \frac{k^{\prime}}{2} \cdot \frac{W}{L} \cdot \left(2 \cdot V_{ov} \cdot V_{DS} - V_{DS}^2 \right) & \; V_{DS} < V_{ov},\\[0.5em]
+  \frac{k^{\prime}}{2} \cdot \frac{W}{L} \cdot V_{ov}^2 \cdot \left(1 + \frac{V_{DS}}{V_A}\right) & \; V_{DS} \geq V_{ov}
+  \end{cases}; \qquad
+  g_m = \frac{d I_D}{d V_{GS}} = k^{\prime} \cdot \frac{W}{L} \cdot V_{ov} = \sqrt{2 \cdot k^{\prime} \cdot \frac{W}{L} \cdot I_D}.
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{Common Source/Emitter Amplifier}
+\begin{align*}
+& r_{in}^{cs} \rightarrow \infty; \qquad 
+  r_{o}^{cs} = \Big(r_o \cdot (1 + g_m \cdot R_S) \Big) \Big|\Big| \; R_D; \\[0.5em]
+& g_m^{cs} = \frac{g_m}{1 + g_m \cdot R_S}; \qquad
+  a^{cs} = \frac{g_m \cdot R_D}{1 + g_m \cdot R_S}; \\[2em]
+& r_{in}^{ce} \approx r_{\pi} + (\beta + 1) \cdot R_E; \qquad
+  r_o^{ce} = \Big(r_o \cdot (1 + g_m \cdot R_E) \Big) \Big|\Big| \; R_C; \\[0.5em]
+& g_m^{ce} = \frac{g_m}{1 + g_m \cdot R_E}; \qquad
+  a^{ce} = \frac{g_m \cdot R_C}{1 + g_m \cdot R_E}.
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{Common Drain/Collector Amplifier}
+\begin{align*}
+& r_{in}^{cd} \rightarrow \infty; \qquad
+  r_o^{cd} = \frac{1}{g_m + g_{mb} + \frac{1}{r_o} + \frac{1}{R_L}};  \\[0.5em]
+& g_m^{cd} = g_m; \qquad
+  a^{cd} = \frac{g_m}{g_m + g_{mb} + \frac{1}{r_o} + \frac{1}{R_L}} \approx 
+  \frac{g_m \cdot R_L}{1 + g_m \cdot R_L}; \\[2em]
+& r_{in}^{cc} = r_{\pi} + (\beta + 1) \cdot (R_L \, || \; r_o); \qquad
+  r_o^{cc} = r_o \, \Big|\Big| \left( \frac{r_{\pi} + R_S}{\beta + 1} \right) \approx 
+  \frac{1}{g_m} + \frac{R_S}{\beta + 1}; \\[0.5em]
+& g_m^{cc} = g_m + \frac{1}{r_{\pi}}; \qquad
+  a^{cc} = \frac{1}{1 + \frac{R_S + r_{\pi}}{(\beta + 1) \cdot (R_L \, || \; r_o)}} \approx 
+  \frac{g_m \cdot R_L}{1 + g_m \cdot R_L}.
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{Common Gate/Base Amplifier}
+\begin{align*}
+& r_{in}^{cg} = \frac{1}{g_m} \cdot \left( 1 + \frac{R_D}{r_o} \right); \qquad 
+  r_o^{cg} \approx r_o \cdot (1 + g_m \cdot R_S); \qquad 
+  V_A \rightarrow \infty \implies r_o \rightarrow \infty; \\[0.5em]
+& g_m^{cg} = g_m; \qquad
+  a^{cg} = g_m \cdot \left( R_D \, \Big|\Big| \; r_o^{cg} \right) = 
+    g_m \cdot R_D; \qquad
+  a_i^{cg} = 1; \\[2em]
+& r_{in}^{cb} \approx \frac{\alpha}{g_m} \cdot \left( 1 + \frac{R_C}{r_o} \right) \approx 
+    \frac{1}{g_m} \cdot \left( 1 + \frac{R_C}{r_o} \right); \quad 
+  r_o^{cb} \approx r_o \cdot \Big(1 + g_m \cdot \big( R_E \, \big|\big| \; r_{\pi} \big) \Big); \quad
+  V_A \rightarrow \infty \implies r_o \rightarrow \infty; \\[0.5em]
+& g_m^{cb} = g_m; \qquad
+  a^{cb} = g_m \cdot \left( R_C \, \big|\big| \; r_o^{cb} \right) \approx g_m \cdot R_C; \qquad
+  a_i^{cb} = \alpha = \frac{\beta}{\beta + 1}.
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{MOSFET/BJT Cascode Amplifier}
+\begin{align*}
+& r_{in}^{mcas} \rightarrow \infty; \qquad
+  r_o^{mcas} = r_{o1} + r_{o2} + g_{m2} \cdot r_{o1} \cdot r_{o2} \approx 
+  g_{m2} \cdot r_{o1} \cdot r_{o2} \\[0.5em]
+& g_m^{mcas} = g_{m}; \qquad
+  a^{mcas} = g_{m} \cdot \left( R_D \, \big|\big| \; r_o^{mcas} \right); \\[2em]
+& r_{in}^{bcas} = r_{\pi}; \qquad
+  r_o^{bcas} \approx \left( 1 + g_m \cdot \left( r_{o2} \, \big|\big| \; r_{\pi} \right) \right) \cdot r_{o1}; \\[0.5em]
+& g_m^{bcas} = g_{m}; \qquad
+  a^{bcas} = g_{m} \cdot \left( R_C \, \big|\big| \; r_o^{bcas} \right)
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{MOSFET/BJT Differntial Pair}
+\begin{align*}
+& \text{Amplifications:} \qquad
+  a_{dm} = \frac{v_{od}}{v_{id}} \bigg|_{v_{ic} = 0} \;; \; \quad
+  a_{cm} = \frac{v_{oc}}{v_{ic}} \bigg|_{v_{id} = 0} \;; \; \quad
+  a_{dmcm} = \frac{v_{od}}{v_{ic}} \bigg|_{v_{id} = 0} \;; \; \quad
+  a_{cmdm} = \frac{v_{oc}}{v_{id}} \bigg|_{v_{ic} = 0} \;; \\[2em]
+& \text{MOSFET Differential Mode:} \qquad
+  r_{in}^{dm} \rightarrow \infty; \qquad
+  r_o^{dm} \approx R_D; \qquad
+  g_m^{dm} = g_m; \qquad
+  a^{dm} = - g_m \cdot R_D; \\[0.5em]
+& \text{MOSFET Common Mode:} \qquad \; \; \;
+  r_{in}^{cm} \rightarrow \infty; \qquad
+  r_o^{cm} \approx R_D; \qquad
+  g_m^{cm} = \frac{g_m}{1 + 2 \cdot g_m \cdot R_{Tail}};  \\[0.1em]
+& \hspace*{14.3em} a^{cm} = - g_m^{cm} \cdot R_D; \qquad
+  CMRR = \frac{a^{dm}}{a^{cm}} = 1 + 2 \cdot g_m \cdot R_{Tail}; \\[2em]
+& \text{BJT Differential Mode:} \qquad
+  r_{in}^{dm} = 2 \cdot r_{\pi}; \qquad
+  r_o^{dm} \approx R_C; \qquad
+  g_m^{dm} = g_m; \qquad
+  a^{dm} = - g_m \cdot R_C; \\[0.5em]
+& \text{BJT Common Mode:} \qquad \; \; \;
+  r_{in}^{cm} = r_{\pi} + (\beta + 1) \cdot 2 \cdot R_{Tail}; \qquad
+  r_o^{cm} \approx R_C; \qquad
+  g_m^{cm} = \frac{g_m}{1 + 2 \cdot g_m \cdot R_{Tail}}; \\[0.1em]
+& \hspace*{11.8em} a^{cm} = - g_m^{cm} \cdot R_C; \qquad
+  CMRR = \frac{a^{dm}}{a^{cm}} = 1 + 2 \cdot g_m \cdot R_{Tail}.
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{Operational Amplifier}
+\begin{align*}
+& \text{Non-inverting amplificaton}: \qquad
+  a^{+} = \left(1 + \frac{R_2}{R_1}\right) \cdot \frac{1}{\frac{1}{a} \cdot \left( 1 + \frac{R_2}{R_1} \right) + 1} \approx 
+    1 + \frac{R_2}{R_1};\\[0.5em]
+& \text{Inverting amplificaton}: \qquad \qquad \;
+  a^{-} = - \frac{R_2}{R_1} \cdot \frac{1}{\frac{1}{a} \cdot \left( 1 + \frac{R_2}{R_1} \right) + 1} \approx 
+    - \frac{R_2}{R_1};\\[0.5em]
+& \text{Output voltages}: \qquad
+  v_{o}^{int} \; \, \, = - \frac{1}{R \cdot C} \cdot \int v_s \; dt; \qquad
+  v_{o}^{diff} = - \frac{1}{R \cdot C} \cdot \frac{d v_s}{d t} ; \\[0.5em]
+& \hspace*{10em} v_{o}^{\text{\smaller[2] \emph{DISO}}} = - v_1 \cdot \frac{R_3}{R_1} + v_2 \cdot \frac{R_4}{R_2 + R_2} \cdot \left( 1 + \frac{R_3}{R_1} \right) =
+  \frac{R_3}{R_1} \cdot (v_2 - v_1) \Bigg|_{\substack{R_1 = R_2, \\[0.1em] R_3 = R_4}} \\[0.5em]
+& \hspace*{10em} v_{o}^{instr} = \frac{R_4}{R_3} \cdot \left( 1 + \frac{2 \cdot R_2}{R_1} \right) \cdot (v_2 - v_1)
+\end{align*}
+\end{sectionbox}
+
+\begin{sectionbox}{Active Amplifiers}
+\vspace{0.3em}
+\begin{multicols}{2}
+\centering \textbf{MFB} \\[0.7em]
+\includegraphics[height=0.25\textwidth]{fig/MFB.png}
+\begin{align*}
+& R_2 = \frac{a_1 - \sqrt{a_1^2 - \frac{4 \cdot b_1 \cdot C_1}{C_2} \cdot (1 + \abs{A_0})}}{4 \cdot \pi \cdot f_g \cdot C_1}; \\[0.5em]
+& R_1 = \frac{R_2}{\abs{A_0}}; \qquad
+  R_3 = \frac{b_1}{4 \cdot \pi^2 \cdot C_1 \cdot C_2 \cdot R_2}; \\[1em]
+& C_2 \geq \frac{4 \cdot b_1 \cdot  (1 + \abs{A_0})}{a_1^2} \cdot C_1.
+\end{align*}
+
+\columnbreak
+
+\centering \textbf{Sallen-Key} \\[0.7em]
+\includegraphics[height=0.25\textwidth]{fig/Sallen-Key.png}
+\begin{align*}
+& R_1 = \frac{a_1 \pm \sqrt{a_1^2 - 4 \cdot b_1 \cdot \frac{C_1 + (1 - A_0) \cdot C_2}{C_2}}}{4 \cdot \pi \cdot f_g \cdot (C_1 + (1 - A) \cdot C_2)}; \\[0.5em]
+& R_2 = \frac{b_1}{4 \cdot \pi^2 \cdot f_g^2 \cdot R_1 \cdot C_1 \cdot C_2} \\[0.5em]
+& \frac{C_1}{C_2} \leq \frac{a_1^2}{4 \cdot b_1} + (A_0 - 1).
+\end{align*}
+\end{multicols}
+
+\vspace{-0.3em}
+\end{sectionbox}
+
+\begin{sectionbox}{Load Regulators}
+  
+\begin{align*}
+& V_{dropout} = I_L \cdot R_{DS(on)}.
+\end{align*}
+\end{sectionbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
