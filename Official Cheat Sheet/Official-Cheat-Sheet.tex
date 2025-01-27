@@ -259,26 +259,39 @@ frametitlerulewidth=1pt}
 \begin{sectionbox}{Common Source/Emitter Amplifier}
 \begin{align*}
 & r_{in}^{cs} \rightarrow \infty; \qquad 
-  r_{o}^{cs} = \Big(r_o \cdot (1 + g_m \cdot R_S) \Big) \Big|\Big| \; R_D; \\[0.5em]
-& g_m^{cs} = \frac{g_m}{1 + g_m \cdot R_S}; \qquad
-  a^{cs} = \frac{g_m \cdot R_D}{1 + g_m \cdot R_S}; \\[2em]
-& r_{in}^{ce} \approx r_{\pi} + (\beta + 1) \cdot R_E; \qquad
-  r_o^{ce} = \Big(r_o \cdot (1 + g_m \cdot R_E) \Big) \Big|\Big| \; R_C; \\[0.5em]
-& g_m^{ce} = \frac{g_m}{1 + g_m \cdot R_E}; \qquad
-  a^{ce} = \frac{g_m \cdot R_C}{1 + g_m \cdot R_E}.
+  r_{o}^{cs} = r_o \; \Big|\Big| \; R_D; \qquad
+  g_m^{cs} = g_m; \qquad
+  a^{cs} = g_m \cdot R_D; \\[1em]
+& r_{in}^{ce} \approx r_{\pi}; \qquad
+  r_o^{ce} = r_o \; \Big|\Big| \; R_C; \qquad
+  g_m^{ce} = g_m; \qquad
+  a^{ce} = g_m \cdot R_C.
 \end{align*}
 \end{sectionbox}
+
+\begin{sectionbox}{Common Source/Emitter with Source/Emitter Degeneration Amplifier}
+  \begin{align*}
+  & r_{in}^{csd} \rightarrow \infty; \qquad 
+    r_{o}^{csd} = \Big(r_o \cdot (1 + g_m \cdot R_S) \Big) \Big|\Big| \; R_D; \\[0.2em]
+  & g_m^{csd} = \frac{g_m}{1 + g_m \cdot R_S}; \qquad
+    a^{csd} = \frac{g_m \cdot R_D}{1 + g_m \cdot R_S}; \\[1.5em]
+  & r_{in}^{ced} \approx r_{\pi} + (\beta + 1) \cdot R_E; \qquad
+    r_o^{ced} = \Big(r_o \cdot (1 + g_m \cdot R_E) \Big) \Big|\Big| \; R_C; \\[0.2em]
+  & g_m^{ced} = \frac{g_m}{1 + g_m \cdot R_E}; \qquad
+    a^{ced} = \frac{g_m \cdot R_C}{1 + g_m \cdot R_E}.
+  \end{align*}
+  \end{sectionbox}
 
 \begin{sectionbox}{Common Drain/Collector Amplifier}
 \begin{align*}
 & r_{in}^{cd} \rightarrow \infty; \qquad
-  r_o^{cd} = \frac{1}{g_m + g_{mb} + \frac{1}{r_o} + \frac{1}{R_L}};  \\[0.5em]
+  r_o^{cd} = \frac{1}{g_m + g_{mb} + \frac{1}{r_o} + \frac{1}{R_L}};  \\[0.2em]
 & g_m^{cd} = g_m; \qquad
   a^{cd} = \frac{g_m}{g_m + g_{mb} + \frac{1}{r_o} + \frac{1}{R_L}} \approx 
-  \frac{g_m \cdot R_L}{1 + g_m \cdot R_L}; \\[2em]
+  \frac{g_m \cdot R_L}{1 + g_m \cdot R_L}; \\[1.5em]
 & r_{in}^{cc} = r_{\pi} + (\beta + 1) \cdot (R_L \, || \; r_o); \qquad
   r_o^{cc} = r_o \, \Big|\Big| \left( \frac{r_{\pi} + R_S}{\beta + 1} \right) \approx 
-  \frac{1}{g_m} + \frac{R_S}{\beta + 1}; \\[0.5em]
+  \frac{1}{g_m} + \frac{R_S}{\beta + 1}; \\[0.2em]
 & g_m^{cc} = g_m + \frac{1}{r_{\pi}}; \qquad
   a^{cc} = \frac{1}{1 + \frac{R_S + r_{\pi}}{(\beta + 1) \cdot (R_L \, || \; r_o)}} \approx 
   \frac{g_m \cdot R_L}{1 + g_m \cdot R_L}.
@@ -289,15 +302,15 @@ frametitlerulewidth=1pt}
 \begin{align*}
 & r_{in}^{cg} = \frac{1}{g_m} \cdot \left( 1 + \frac{R_D}{r_o} \right); \qquad 
   r_o^{cg} \approx r_o \cdot (1 + g_m \cdot R_S); \qquad 
-  V_A \rightarrow \infty \implies r_o \rightarrow \infty; \\[0.5em]
+  V_A \rightarrow \infty \implies r_o \rightarrow \infty; \\[0.2em]
 & g_m^{cg} = g_m; \qquad
   a^{cg} = g_m \cdot \left( R_D \, \Big|\Big| \; r_o^{cg} \right) = 
     g_m \cdot R_D; \qquad
-  a_i^{cg} = 1; \\[2em]
+  a_i^{cg} = 1; \\[1.5em]
 & r_{in}^{cb} \approx \frac{\alpha}{g_m} \cdot \left( 1 + \frac{R_C}{r_o} \right) \approx 
     \frac{1}{g_m} \cdot \left( 1 + \frac{R_C}{r_o} \right); \quad 
   r_o^{cb} \approx r_o \cdot \Big(1 + g_m \cdot \big( R_E \, \big|\big| \; r_{\pi} \big) \Big); \quad
-  V_A \rightarrow \infty \implies r_o \rightarrow \infty; \\[0.5em]
+  V_A \rightarrow \infty \implies r_o \rightarrow \infty; \\[0.2em]
 & g_m^{cb} = g_m; \qquad
   a^{cb} = g_m \cdot \left( R_C \, \big|\big| \; r_o^{cb} \right) \approx g_m \cdot R_C; \qquad
   a_i^{cb} = \alpha = \frac{\beta}{\beta + 1}.
@@ -308,11 +321,11 @@ frametitlerulewidth=1pt}
 \begin{align*}
 & r_{in}^{mcas} \rightarrow \infty; \qquad
   r_o^{mcas} = r_{o1} + r_{o2} + g_{m2} \cdot r_{o1} \cdot r_{o2} \approx 
-  g_{m2} \cdot r_{o1} \cdot r_{o2} \\[0.5em]
+  g_{m2} \cdot r_{o1} \cdot r_{o2} \\[0.2em]
 & g_m^{mcas} = g_{m}; \qquad
-  a^{mcas} = g_{m} \cdot \left( R_D \, \big|\big| \; r_o^{mcas} \right); \\[2em]
+  a^{mcas} = g_{m} \cdot \left( R_D \, \big|\big| \; r_o^{mcas} \right); \\[1.5em]
 & r_{in}^{bcas} = r_{\pi}; \qquad
-  r_o^{bcas} \approx \left( 1 + g_m \cdot \left( r_{o2} \, \big|\big| \; r_{\pi} \right) \right) \cdot r_{o1}; \\[0.5em]
+  r_o^{bcas} \approx \left( 1 + g_m \cdot \left( r_{o2} \, \big|\big| \; r_{\pi} \right) \right) \cdot r_{o1}; \\[0.2em]
 & g_m^{bcas} = g_{m}; \qquad
   a^{bcas} = g_{m} \cdot \left( R_C \, \big|\big| \; r_o^{bcas} \right)
 \end{align*}
@@ -324,7 +337,7 @@ frametitlerulewidth=1pt}
   a_{dm} = \frac{v_{od}}{v_{id}} \bigg|_{v_{ic} = 0} \;; \; \quad
   a_{cm} = \frac{v_{oc}}{v_{ic}} \bigg|_{v_{id} = 0} \;; \; \quad
   a_{dmcm} = \frac{v_{od}}{v_{ic}} \bigg|_{v_{id} = 0} \;; \; \quad
-  a_{cmdm} = \frac{v_{oc}}{v_{id}} \bigg|_{v_{ic} = 0} \;; \\[2em]
+  a_{cmdm} = \frac{v_{oc}}{v_{id}} \bigg|_{v_{ic} = 0} \;; \\[1em]
 & \text{MOSFET Differential Mode:} \qquad
   r_{in}^{dm} \rightarrow \infty; \qquad
   r_o^{dm} \approx R_D; \qquad
@@ -335,7 +348,7 @@ frametitlerulewidth=1pt}
   r_o^{cm} \approx R_D; \qquad
   g_m^{cm} = \frac{g_m}{1 + 2 \cdot g_m \cdot R_{Tail}};  \\[0.1em]
 & \hspace*{14.3em} a^{cm} = - g_m^{cm} \cdot R_D; \qquad
-  CMRR = \frac{a^{dm}}{a^{cm}} = 1 + 2 \cdot g_m \cdot R_{Tail}; \\[2em]
+  CMRR = \frac{a^{dm}}{a^{cm}} = 1 + 2 \cdot g_m \cdot R_{Tail}; \\[1em]
 & \text{BJT Differential Mode:} \qquad
   r_{in}^{dm} = 2 \cdot r_{\pi}; \qquad
   r_o^{dm} \approx R_C; \qquad
@@ -346,7 +359,11 @@ frametitlerulewidth=1pt}
   r_o^{cm} \approx R_C; \qquad
   g_m^{cm} = \frac{g_m}{1 + 2 \cdot g_m \cdot R_{Tail}}; \\[0.1em]
 & \hspace*{11.8em} a^{cm} = - g_m^{cm} \cdot R_C; \qquad
-  CMRR = \frac{a^{dm}}{a^{cm}} = 1 + 2 \cdot g_m \cdot R_{Tail}.
+  CMRR = \frac{a^{dm}}{a^{cm}} = 1 + 2 \cdot g_m \cdot R_{Tail}; \\[1em]
+& \text{Disbalanced Differential Pair:} \qquad \Delta V^{cm} = \Delta V_{GS} + 2 \cdot \Delta I_D \cdot R_{SS}; \qquad \Delta V_{GS} = g_m \cdot \Delta I_D; \\[0.5em]
+& \hspace*{15em} \Delta V_{out1} = \Delta I_D \cdot R_D; \qquad \Delta V_{out2} = \Delta I_D \cdot (R_D + \Delta R_D); \\[0.5em]
+& \hspace*{15em} \Delta V_{out} = \Delta V_{out1} - \Delta V_{out2} = - \Delta I_D \cdot \Delta R_D = \frac{\Delta V^{cm}}{\frac{1}{g_m} + 2 \cdot R_{SS}} \cdot \Delta R_D; \\[0.5em]
+& \hspace*{15em} a^{dmcm} = \frac{\Delta V_{out}}{\Delta V^{cm}} = \frac{\Delta R_D}{\frac{1}{g_m} + 2 \cdot R_{SS}} \approx - \frac{\Delta R_D}{2 \cdot R_{SS}} \; \implies \; CMRR^{\prime} = \frac{a^{dm}}{a^{dmcm}}.
 \end{align*}
 \end{sectionbox}
 
@@ -396,7 +413,10 @@ frametitlerulewidth=1pt}
 \begin{sectionbox}{Load Regulators}
   
 \begin{align*}
-& V_{dropout} = I_L \cdot R_{DS(on)}.
+& V_{out} = V_{in} \cdot \frac{R_2}{R_1 + R_2}; \qquad
+  V_{dropout} = I_L \cdot R_{DS(on)}; \\[0.5em]
+& Eff = \frac{P_o}{P_i} = \frac{V_{out} \cdot I_L}{(I_L + I_Q) \cdot V_{in}} \approx \frac{V_{out}}{V_{in}}; \qquad
+  PSR = 20 \cdot \log_{10} \frac{V_{in}}{V_{out}}.
 \end{align*}
 \end{sectionbox}
 
