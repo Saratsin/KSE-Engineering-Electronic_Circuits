@@ -131,7 +131,7 @@ frametitlerulewidth=1pt}
      J_{tot}^{drift} = (\mu_n \cdot n + \mu_p \cdot p) \cdot q \cdot E; \quad
      J_{tot}^{diff} = q \cdot \left( D_n \cdot \frac{d n}{d x} - D_p \cdot \frac{d p}{d x} \right); \\[0.5em]
 & I_D = I_S \cdot (e^{\frac{V_F}{V_T}} - 1); \qquad
-  r_D = \left( \frac{d I_D}{d V_F} \right)^{-1} \approx \frac{V_T}{I_D}, \;\; v_f \ll V_F; \qquad
+  r_D = \left( \frac{d I_D}{d V_F} \right)^{-1}; \qquad r_D \approx \frac{V_T}{I_D}, \;\; v_f \ll V_F; \qquad
   n_i \approx 5.2 \cdot 10^{15} \cdot T^{\frac{3}{2}} \cdot e^{-\frac{E_g}{2 \cdot k \cdot T}}; \\[0.5em]
 & C_j = \frac{C_{j0}}{\sqrt{1 + \frac{V_R}{V_0}}}; \qquad
   C_{j0} = A \cdot \sqrt{\frac{\epsilon \cdot q}{2} \cdot \frac{N_A \cdot N_D}{N_A + N_D} \cdot \frac{1}{V_0}}; \qquad
@@ -141,7 +141,8 @@ frametitlerulewidth=1pt}
 
 \begin{sectionbox}{BJT}
 \begin{align*}
-& I_C = I_S \cdot e^{\frac{V_{BE}}{V_T}} \cdot (1 + \frac{V_{CE}}{V_A}) \approx I_S \cdot e^{\frac{V_{BE}}{V_T}}; \qquad
+& I_C = I_S \cdot e^{\frac{V_{BE}}{V_T}} \cdot (1 + \frac{V_{CE}}{V_A}); \qquad
+  I_C \approx I_S \cdot e^{\frac{V_{BE}}{V_T}}, \;\; V_A \rightarrow \infty; \qquad
   I_S = \frac{q \cdot A \cdot D_n \cdot n_i^2}{W_B \cdot N_A}; \qquad
   V_A = \frac{I_C^{\prime}}{\frac{d I_C}{d V_{CE}}}; \\[0.5em]
 & \beta_F = \frac{I_C}{I_B} = \frac{1}{\frac{W_B^2}{2 \cdot \tau_b \cdot D_n} + \frac{D_p}{D_n} \cdot \frac{W_B}{L_p} \cdot \frac{N_A}{N_D}}; \qquad
@@ -155,19 +156,103 @@ frametitlerulewidth=1pt}
 \begin{align*}
 & V_{ov} = V_{GS} - V_{th}; \qquad 
   V_{th} = V_{th0} + \gamma \cdot \left( \sqrt{2 \cdot \phi_f + V_{Bias}} - \sqrt{2 \cdot \phi_f} \right); \qquad 
-  k^{\prime} = \mu_n \cdot C_{ox}; \qquad
-  \frac{g_m}{I_D} = \frac{2}{V_{ov}}; \\[0.5em]
-& \gamma = \frac{1}{C_{ox}} \cdot \sqrt{2 \cdot q \cdot \epsilon \cdot N_A}; \qquad
-  C_{ox} = \frac{\epsilon_{ox}}{t_{ox}}; \qquad
-  V_A = \frac{1}{\lambda} = \frac{I_D}{\frac{d I_D}{d V_{DS}}}; \qquad %CHECK for BJT we use prime index for current, since it is specific current, not the arbitrary one. Here it looks like arbitrary one, is it correct?
+  \gamma = \frac{1}{C_{ox}} \cdot \sqrt{2 \cdot q \cdot \epsilon \cdot N_A}; \\[0.3em]
+& V_{DS}^{sat} \approx \begin{cases}
+  3 \cdot V_T
+  , \qquad \qquad \qquad \quad \;\;
+  0 \leq V_{ov} < 2 \cdot n \cdot V_T
+  , & \qquad \qquad \quad
+  V_A = \frac{1}{\lambda} = \frac{I_D}{\frac{d I_D}{d V_{DS}}}; \qquad
+  k^{\prime} = \mu_n \cdot C_{ox};
+  \\[0.8em]
+  V_{GS} - V_{th}, \qquad \quad \;\;
+  2 \cdot n \cdot V_T \leq V_{ov} \ll E_C \cdot L
+  , & \qquad \qquad \quad
+  g_m = \frac{d I_D}{d V_{GS}}; \qquad
+  C_{ox} = \frac{\epsilon_{ox}}{t_{ox}};
+  \\[0.8em]
+  (V_{GS} - V_{th}) \cdot \left( 1 - \frac{V_{GS} - V_{th}}{2 \cdot E_C \cdot L} \right)
+  , \;\;\;\,
+  V_{ov} \cong E_C \cdot L
+  ; & \qquad \qquad \quad
   r_{in} \rightarrow \infty; \qquad
-  r_o = \frac{d V_{DS}}{d I_D} = \frac{V_A}{I_D}; \\[0.5em]
-& I_D = \begin{cases}
-  k^{\prime} \cdot \frac{W}{L} \cdot V_{ov} \cdot V_{DS} & \; V_{DS} \ll V_{ov},\\[0.5em]
-  \frac{k^{\prime}}{2} \cdot \frac{W}{L} \cdot \left(2 \cdot V_{ov} \cdot V_{DS} - V_{DS}^2 \right) & \; V_{DS} < V_{ov},\\[0.5em]
-  \frac{k^{\prime}}{2} \cdot \frac{W}{L} \cdot V_{ov}^2 \cdot \left(1 + \frac{V_{DS}}{V_A}\right) & \; V_{DS} \geq V_{ov}
-  \end{cases}; \qquad
-  g_m = \frac{d I_D}{d V_{GS}} = k^{\prime} \cdot \frac{W}{L} \cdot V_{ov} = \sqrt{2 \cdot k^{\prime} \cdot \frac{W}{L} \cdot I_D}.
+  r_o = \frac{d V_{DS}}{d I_D} = \frac{V_A}{I_D};
+\end{cases} \\[0.8em]
+& \;\;\, I_D = \begin{cases}
+  \frac{W}{L} \cdot I_t \cdot e^{\frac{V_{GS} - V_{th}}{n \cdot V_T}} \cdot \left( 1 - e^{-\frac{V_{DS}}{V_T}} \right), & \; 
+  0 \leq V_{ov} < 2 \cdot n \cdot V_T
+  , \\[0.8em]
+  \frac{k^{\prime}}{2} \cdot \frac{W}{L} \cdot \left(2 \cdot (V_{GS} - V_{th}) \cdot V_{DS} - V_{DS}^2 \right), & \; 
+  V_{DS} < V_{ov}
+  , \quad 
+  2 \cdot n \cdot V_T \leq V_{ov} \ll E_C \cdot L
+  , \\[0.5em]
+  %k^{\prime} \cdot \frac{W}{L} \cdot (V_{GS} - V_{th}) \cdot V_{DS}, & \, 
+  %V_{DS} \ll V_{ov}
+  %, \quad 
+  %2 \cdot n \cdot V_T \leq V_{ov} \ll E_C \cdot L
+  %, \\[0.5em]
+  \frac{k^{\prime}}{2} \cdot \frac{W}{L} \cdot (V_{GS} - V_{th})^2 \cdot \left(1 + \frac{V_{DS}}{V_A}\right), & \; 
+  V_{DS} \geq V_{ov}
+  , \quad 
+  2 \cdot n \cdot V_T \leq V_{ov} \ll E_C \cdot L
+  %, \;\; 
+  %V_A \not \rightarrow \infty
+  %, \\[0.5em]
+  %\frac{k^{\prime}}{2} \cdot \frac{W}{L} \cdot (V_{GS} - V_{th})^2, & \; 
+  %V_{DS} \geq V_{ov}
+  %, \quad 
+  %2 \cdot n \cdot V_T \leq V_{ov} \ll E_C \cdot L
+  %, \;\; 
+  %V_A \rightarrow \infty
+  , \\[0.8em]
+  \frac{k^{\prime}}{2} \cdot \frac{1}{1 + \frac{V_{DS}}{E_c \cdot L}} \cdot \frac{W}{L} \cdot \left( 2 \cdot (V_{GS} - V_{th}) \cdot V_{DS} - V_{DS}^2 \right), & \; 
+  V_{DS} < V_{ov}
+  , \quad 
+  V_{ov} \cong E_C \cdot L
+  , \\[0.5em]
+  %k^{\prime} \cdot \frac{1}{1 + \frac{V_{DS}}{E_c \cdot L}} \cdot \frac{W}{L} \cdot (V_{GS} - V_{th}) \cdot V_{DS}, & \; 
+  %V_{DS} \ll V_{ov}
+  %, \;\;\; 
+  %V_{ov} \cong E_C \cdot L
+  %, \\[0.5em]
+  \frac{k^{\prime}}{2} \cdot \frac{1}{1 + \frac{V_{GS} - V_{th}}{E_c \cdot L}} \cdot \frac{W}{L} \cdot (V_{GS} - V_{th})^2, & \; 
+  V_{DS} \geq V_{ov}
+  , \quad 
+  V_{ov} \cong E_C \cdot L
+  , \quad 
+  E_C \not \rightarrow 0
+  , \\[0.5em]
+  k^{\prime} \cdot W \cdot (V_{GS} - V_{th}) \cdot E_C, & \; 
+  V_{DS} \geq V_{ov}
+  , \quad 
+  V_{ov} \cong E_C \cdot L
+  , \quad 
+  E_C \rightarrow 0
+  ;
+  \end{cases} \\[0.8em]
+& \;\,\, g_m = \begin{cases}
+  \frac{I_D}{n \cdot V_T}, & \;
+  0 \leq V_{ov} < 2 \cdot n \cdot V_T
+  , \\[1em]
+  \substack{
+    k^{\prime} \cdot \frac{W}{L} \cdot (V_{GS} - V_{th}) \\[0.3em]
+    = \; \sqrt{2 \cdot k^{\prime} \cdot \frac{W}{L} \cdot I_D}} \;\; , & \;
+  2 \cdot n \cdot V_T \leq V_{ov} \ll E_C \cdot L
+  , \\[1em]
+  W \cdot C_{ox} \cdot v_{scl}, & \;
+  V_{ov} \cong E_C \cdot L
+\end{cases} \qquad
+\frac{g_m}{I_D} = \begin{cases}
+  \frac{1}{n \cdot V_T}, & \;
+  0 \leq V_{ov} < 2 \cdot n \cdot V_T
+  , \\[1em]
+  \frac{2}{V_{ov}}, & \;
+  2 \cdot n \cdot V_T \leq V_{ov} \ll E_C \cdot L
+  , \\[1em]
+  \frac{1}{V_{ov}}, & \;
+  V_{ov} \cong E_C \cdot L
+\end{cases}
 \end{align*}
 \end{sectionbox}
 
